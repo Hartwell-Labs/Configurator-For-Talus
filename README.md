@@ -41,37 +41,7 @@ That file is what the Talus monitor loads at every start. That is the entire pro
 
 ## What it looks like
 
-```text
-talus  configurator   —   values are saved once, Talus reads them at start-up
-  /home/you/.config/talus/config.conf   saved
-╭ SETTINGS ────────────────────────────────────────────────────────╮╭ PREVIEW ───────────────────────────────────────╮
-│  KEY               VALUE                SCOPE                    ││  talus — navy background                       │
-│› background        navy                 ui                       ││  1 284 events/s   up 12m                       │
-│  alert_threshold   —                    monitor                  ││                                                │
-│  output            —                    monitor                  ││  cargo    /src/main.rs                         │
-│  filter_ext        —                    monitor                  ││  firefox  /home/x/.cache/…                     │
-│  top_files         —                    monitor                  ││  rsync    /data/backup.tar                     │
-│  ignore_comm       —                    monitor                  ││                                                │
-│  show_ignored      —                    monitor                  ││  python3  /etc/passwd                          │
-│  memlp             —                    monitor                  ││                                                │
-│  memlp_checkpoint  —                    monitor                  ││  ████ ███ ███ ███ ███ ███                      │
-│  bpf               —                    monitor                  ││  ok     warn   alert  media  focus  info       │
-│  web               —                    enterprise               ││                                                │
-│  auto_kill         —                    enterprise               ││                                                │
-│  kafka_brokers     —                    enterprise               ││                                                │
-│  kafka_topic       —                    enterprise               ││                                                │
-│  clickhouse        —                    enterprise               ││                                                │
-│  memgraph          —                    enterprise               ││                                                │
-│                                                                  │╰────────────────────────────────────────────────╯
-│                                                                  │╭ SELECTED ──────────────────────────────────────╮
-│                                                                  ││  background   [ui]                             │
-│                                                                  ││  TUI background (black, gray, white, navy)     │
-│                                                                  ││                                                │
-│                                                                  ││  value: navy                                   │
-│                                                                  ││  allowed: black, gray, white, navy             │
-╰──────────────────────────────────────────────────────────────────╯╰────────────────────────────────────────────────╯
-  ↑/↓ select   enter edit   ←/→ change   u default   s save   r reset   ? keys   q quit
-```
+![talus-config on the navy palette: SETTINGS lists all sixteen keys with scope, PREVIEW shows a sample dashboard painted in the chosen colours, SELECTED explains the highlighted option, and the footer carries the key map.](assets/talus-config.png)
 
 The **PREVIEW** pane is not a static mock-up: it is painted with the palette you are
 choosing. Press `←`/`→` on `background` and the *whole* configurator — panels, text,
