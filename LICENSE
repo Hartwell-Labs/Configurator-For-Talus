@@ -1,0 +1,50 @@
+MIT License
+
+Copyright (c) 2026 Bartosz Osiej
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## Scope of this grant
+
+The MIT terms above govern this repository in full. Everything that is not in
+it is not in it because it is elsewhere, not because it is withheld.
+
+Three things are not in this repository at all, because they are built from a
+separate, private crate called `talus-enterprise`:
+
+  * the automatic response path — terminating or suspending a detected process
+  * the web dashboard, its REST API, its WebSocket stream and Prometheus metrics
+  * the Kafka, ClickHouse and MemGraph exporters, and the C FFI library
+
+This is a boundary of distribution, not of configuration. There is no flag to
+pass and no check to remove: a build of this crate contains no `kill(2)` call,
+no dashboard and no exporter, because that source is not here. The seam exists
+in two traits — `monitor::Responder` and `storage::EventSink` — whose default
+implementations observe without acting, so a MIT build reaches a detection
+verdict and reports it as unacted.
+
+Everything that makes the detection trustworthy is here and stays MIT: the eBPF
+probes, the scoring and sweep detectors, the MeMLP engine, the signed audit
+chain, the self-sandbox, the watchdog, the TUI, the JSON and plain-text output,
+the storage pipeline, the CLI, and the FFI needed to read the audit chain.
+
+Nothing in this repository's history changes retroactively. MIT is a grant; see
+`NOTICE`.

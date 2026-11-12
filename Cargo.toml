@@ -1,0 +1,38 @@
+[package]
+name = "configurator-for-talus"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+description = "The full-screen configurator for Talus — not the agent. Edits the config.conf that the Talus monitor reads at start-up."
+license = "MIT"
+repository = "https://github.com/Hartwell-Labs/Configurator-For-Talus"
+homepage = "https://github.com/Hartwell-Labs/talus-process-monitor"
+documentation = "https://github.com/Hartwell-Labs/Configurator-For-Talus#readme"
+keywords = ["talus", "configuration", "tui", "security", "linux"]
+categories = ["command-line-utilities", "configuration"]
+
+# One binary, and it is deliberately *not* named `talus`: it configures Talus,
+# it does not monitor anything. See README.md — this repo is not the agent.
+[[bin]]
+name = "talus-config"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1"
+dirs = "7"
+
+# FrankenTUI — the same kernel the Talus dashboard draws with, so the
+# configurator looks like Talus instead of like a questionnaire.
+ftui = "0.6"
+ftui-core = "0.6"
+ftui-render = "0.6"
+ftui-runtime = { version = "0.6", features = ["crossterm-compat"] }
+ftui-layout = "0.6"
+ftui-style = "0.6"
+ftui-text = "0.6"
+ftui-widgets = "0.6"
+
+[profile.release]
+strip = true
+lto = "thin"
+codegen-units = 1
